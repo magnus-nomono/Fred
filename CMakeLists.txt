@@ -12,7 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftree-vectorize")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopt-info-vec")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopt-info-loop")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL MSVC)
-add_compile_options(/O2 /fp:fast)
+add_compile_options(/O2 /fp:fast /openmp:experimental /permissive-)
 endif()
 
 set(CMAKE_CXX_STANDARD 14)
@@ -23,7 +23,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 find_package(OpenMP REQUIRED)
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL GNU)
 add_definitions(-D_GLIBCXX_PARALLEL)
+endif()
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
