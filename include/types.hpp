@@ -18,15 +18,17 @@ typedef double distance_t; // Distances
 typedef double coordinate_t; // Coordinates
 typedef long double parameter_t; // Parameters, i.e., values in [0,1]
 
-typedef unsigned long dimensions_t; // Dimensions
+
 #ifdef _MSC_VER
 //TODO: see if long is big enough, and faster, here.
-typedef long long curve_size_t; // Curve complexities
+typedef long long omp_long;
 #else
-typedef unsigned long curve_size_t; // Curve complexities
+typedef unsigned long omp_long;
 #endif
 
-typedef unsigned long curve_number_t; // Number of curves
+typedef omp_long dimensions_t; // Dimensions
+typedef omp_long curve_size_t; // Curve complexities
+typedef omp_long curve_number_t; // Number of curves
 
 class Point;
 class Curve;
